@@ -14,6 +14,13 @@ public class Main {
 //        doCalc();
 //        fillArray();
 //        fillDiagonals();
+//        findMaxMinNumber();
+        //System.out.println(compareSum(myArray));
+
+//        changeValuePosition(rotatingArray, myN);
+//        for (int i = 0; i < rotatingArray.length; i++)
+//            System.out.print(rotatingArray[i] + ", ");
+//        System.out.println();
     }
 //
     public static void fillArray() {
@@ -49,4 +56,68 @@ public static void fillDiagonals(){
         }
         }
 }
+public static void findMaxMinNumber(){
+        int[] array = {0, 3, 220, 15, 4, 9};
+        int maxNumber = -2147483648;
+        int minNumber = 2147483647;
+        if (array.length > 0){
+            for (int i = 0; i < array.length; i++){
+                if (array[i] > maxNumber){
+                    maxNumber = array[i];
+                }
+                if (array[i] < minNumber){
+                    minNumber = array[i];
+                }
+
+            }
+            System.out.println("Max number is " + maxNumber + " Min number is " + minNumber);
+        }
+}
+   static int[] myArray = {4, 3, 3, 5, 0, 3, 2, 1, 9};
+public static boolean compareSum(int [] array) {
+    if (array.length > 4) //считаем, что минимально можно просуммировать по 2 элемента с каждого конца
+    {
+        int leftSum = array[0] + array[1];
+        int rightSum = 0;
+        for (int i = 2; i < array.length; i++) {
+            rightSum += array[i];
+        }
+        if (leftSum == rightSum) {
+            return true;
+        }
+        for (int i = 2; i < array.length - 2; i++) {
+            leftSum += array[i];
+            rightSum -= array[i];
+            if(leftSum == rightSum){
+                return true;
+            }
+
+        }
+    }return false;
+}
+static int myN = -1;
+static int[] rotatingArray = {3, 4, 1, 6, 3, 0, 8, 112};
+public static void changeValuePosition(int [] array, int n)
+{
+    int position = 0;
+    int startingPosition = position;
+    int movingValue = array[position];
+    for (int i = 0; i < array.length; i++)
+    {
+        int newPosition = (((position + n) % array.length) + array.length) % array.length;
+        int oldValue = array[newPosition];
+        array[newPosition] = movingValue;
+        position = newPosition;
+        if (position == startingPosition)
+        {
+            position++;
+            startingPosition = position;
+            movingValue = array[position];
+        }
+        else movingValue = oldValue;
+
+    }
+
+}
+
 }
