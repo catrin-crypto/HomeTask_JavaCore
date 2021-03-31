@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
+    public static final int MAX_TRY_COUNT = 3;//max number of attempts to guess the number
     public static void main(String[] args) {
         Random random = new Random();
         int userDecision;
@@ -15,9 +16,9 @@ public class Main {
 
         int guessingNumber = random.nextInt(10);
 
-        int maxTryCount = 3;
+        //int maxTryCount = 3;
 
-        for (int tryCount = maxTryCount; tryCount > 0; tryCount--)
+        for (int tryCount = MAX_TRY_COUNT; tryCount > 0; tryCount--)
         {
             System.out.println("Угадайте число от 0 до 9");
             int userAnswer = scanner.nextInt();
@@ -41,6 +42,10 @@ public class Main {
         userDecision = scanner.nextInt();
     } while(userDecision == 1);
 
-    scanner.close();
+
+
+
+    GuessWordGame.runGame();
+        scanner.close();
     }
 }
