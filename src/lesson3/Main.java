@@ -16,8 +16,6 @@ public class Main {
 
         int guessingNumber = random.nextInt(10);
 
-        //int maxTryCount = 3;
-
         for (int tryCount = MAX_TRY_COUNT; tryCount > 0; tryCount--)
         {
             System.out.println("Угадайте число от 0 до 9");
