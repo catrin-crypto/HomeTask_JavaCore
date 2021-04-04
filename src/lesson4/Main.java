@@ -168,58 +168,63 @@ public class Main {
 
     public static void makeBlockingMove(char antiDot)
     {
-        if(lineType == 0)
+       if(isMapFull() == true)
         {
-            for (int i = foundLineCoordinates[0]; i < foundLineCoordinates[0] + DOTS_TO_WIN; i++)
+            System.out.println("No winner!");}
+
+            if(lineType == 0)
             {
-                if(cellIsNotValid(i, foundLineCoordinates[1]))
+                for (int i = foundLineCoordinates[0]; i < foundLineCoordinates[0] + DOTS_TO_WIN; i++)
                 {
-                    continue;
-                } else {
-                    map[foundLineCoordinates[1]][i] = antiDot;
-                    System.out.println("Computer blocks horizontal with move -> " + (i + 1) + " " + (foundLineCoordinates[1] + 1));
-                    break;
+                    if(cellIsNotValid(i, foundLineCoordinates[1]))
+                    {
+                        continue;
+                    } else {
+                        map[foundLineCoordinates[1]][i] = antiDot;
+                        System.out.println("Computer blocks horizontal with move -> " + (i + 1) + " " + (foundLineCoordinates[1] + 1));
+                        break;
+                    }
+                }
+            } else if(lineType == 1)
+            {
+                for (int i = foundLineCoordinates[1]; i < foundLineCoordinates[1] + DOTS_TO_WIN; i++) {
+                    if(cellIsNotValid(foundLineCoordinates[0], i)){
+                        continue;
+                    } else {
+                        map[i][foundLineCoordinates[0]] = antiDot;
+                        System.out.println("Computer blocks vertical with move -> " + (foundLineCoordinates[0] + 1) + " " + (i + 1));
+                        break;
+                    }
                 }
             }
-        } else if(lineType == 1)
-        {
-            for (int i = foundLineCoordinates[1]; i < foundLineCoordinates[1] + DOTS_TO_WIN; i++) {
-                if(cellIsNotValid(foundLineCoordinates[0], i)){
-                    continue;
-                } else {
-                    map[i][foundLineCoordinates[0]] = antiDot;
-                    System.out.println("Computer blocks vertical with move -> " + (foundLineCoordinates[0] + 1) + " " + (i + 1));
-                    break;
+            else if(lineType == 2)
+            {
+                for (int i = 0; i < DOTS_TO_WIN; i++) {
+                    if(cellIsNotValid(foundLineCoordinates[0] + i, foundLineCoordinates[1] + i)){
+                        continue;
+                    } else {
+                        map[foundLineCoordinates[1] + i][foundLineCoordinates[0] + i] = antiDot;
+                        System.out.println("Computer blocks diagonal with move -> " + (foundLineCoordinates[0] + i + 1) + " " + (foundLineCoordinates[1] + i + 1));
+                        break;
+                    }
                 }
             }
+            else if(lineType == 3)
+            {
+                for (int i = 0; i < DOTS_TO_WIN; i++) {
+                    if(cellIsNotValid(foundLineCoordinates[0] - i, foundLineCoordinates[1] + i)){
+                        continue;
+                    } else {
+                        map[foundLineCoordinates[1] + i][foundLineCoordinates[0] - i] = antiDot;
+                        System.out.println("Computer blocks backward diagonal with move -> " + (foundLineCoordinates[0] - i + 1) + " " + (foundLineCoordinates[1] + i + 1));
+                        break;
+                    }
+                }
+            }else aiTurn();
         }
-        else if(lineType == 2)
-        {
-            for (int i = 0; i < DOTS_TO_WIN; i++) {
-                if(cellIsNotValid(foundLineCoordinates[0] + i, foundLineCoordinates[1] + i)){
-                    continue;
-                } else {
-                    map[foundLineCoordinates[1] + i][foundLineCoordinates[0] + i] = antiDot;
-                    System.out.println("Computer blocks diagonal with move -> " + (foundLineCoordinates[0] + i + 1) + " " + (foundLineCoordinates[1] + i + 1));
-                    break;
-                }
-            }
-        }
-        else if(lineType == 3)
-        {
-            for (int i = 0; i < DOTS_TO_WIN; i++) {
-                if(cellIsNotValid(foundLineCoordinates[0] - i, foundLineCoordinates[1] + i)){
-                    continue;
-                } else {
-                    map[foundLineCoordinates[1] + i][foundLineCoordinates[0] - i] = antiDot;
-                    System.out.println("Computer blocks backward diagonal with move -> " + (foundLineCoordinates[0] - i + 1) + " " + (foundLineCoordinates[1] + i + 1));
-                    break;
-                }
-            }
-        }else aiTurn();
 
 
-    }
+
 
     private static void ProcessHorizontalLine(char dot,char antiDot,  int y, int x) {
 
