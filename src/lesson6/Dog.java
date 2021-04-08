@@ -2,6 +2,8 @@ package lesson6;
 
 public class Dog extends Animal{
     private static int dogsCount;
+    public static final int dogMaxDistance = 500;
+    public static final int dogMaxSwimDistance = 10;
     public Dog(String name) {
         super(name);
         dogsCount++;
@@ -13,16 +15,16 @@ public class Dog extends Animal{
 
     @Override
     public void run(int distanceInMeters) {
-        if(distanceInMeters > 500){
-            distanceInMeters = 500;
+        if(distanceInMeters > dogMaxDistance){
+            distanceInMeters = dogMaxDistance;
         }
         super.run(distanceInMeters);
     }
 
     @Override
     public void swim(int distanceInMeters) {
-        if(distanceInMeters > 10){
-            distanceInMeters = 10;
+        if(distanceInMeters > dogMaxSwimDistance){
+            distanceInMeters = dogMaxSwimDistance;
         }
         super.swim(distanceInMeters);
     }

@@ -2,6 +2,7 @@ package lesson6;
 
 public class Cat extends Animal{
     private static int catsCount;
+    public static final int catMaxDistance = 200;
     public Cat(String name) {
         super(name);
         catsCount++;
@@ -13,8 +14,8 @@ public class Cat extends Animal{
 
     @Override
     public void run(int distanceInMeters) {
-        if(distanceInMeters > 200){
-            distanceInMeters = 200;
+        if(distanceInMeters > catMaxDistance){
+            distanceInMeters = catMaxDistance;
         }
         super.run(distanceInMeters);
 
